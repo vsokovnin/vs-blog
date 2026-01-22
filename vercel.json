@@ -2,9 +2,21 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "routes": [
-    { "src": "/blog/(.*)", "dest": "/blog/$1" },
-    { "src": "/blog", "dest": "/blog" },
-    { "src": "/(.*)", "dest": "https://sokovnin.tilda.ws/$1", "status": 200 }
+    {
+      "src": "/(.*)",
+      "dest": "https://sokovnin.tilda.ws/$1",
+      "status": 200,
+      "continue": true,
+      "check": true
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "https://sokovnin.tilda.ws/$1",
+      "status": 200
+    }
   ],
   "headers": [
     {
