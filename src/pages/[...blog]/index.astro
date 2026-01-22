@@ -6,6 +6,8 @@ import type { ImageMetadata } from 'astro';
 import Layout from '~/layouts/PageLayout.astro';
 import SinglePost from '~/components/blog/SinglePost.astro';
 import ToBlogLink from '~/components/blog/ToBlogLink.astro';
+import ArticleJsonLd from '~/components/seo/ArticleJsonLd.astro';
+import FAQJsonLd from '~/components/seo/FAQJsonLd.astro';
 
 import { getCanonical, getPermalink } from '~/utils/permalinks';
 import { getStaticPathsBlogPost, blogPostRobots } from '~/utils/blog';
@@ -46,6 +48,18 @@ const metadata = merge(
 ---
 
 <Layout metadata={metadata}>
+  <ArticleJsonLd
+    headline={post.title}
+    description={post.excerpt || ''}
+    author={post.author || 'Виктор Соковнин'}
+    datePublished={post.publishDate.toISOString()}
+    dateModified={post.updateDate?.toISOString()}
+    image={typeof image === 'string' ? image : undefined}
+    url={String(url)}
+  />
+  {post.faq && post.faq.length > 0 && (
+    <FAQJsonLd questions={post.faq} />
+  )}
   <SinglePost post={{ ...post, image: image }} url={url}>
     {post.Content ? <post.Content /> : <Fragment set:html={post.content || ''} />}
   </SinglePost>

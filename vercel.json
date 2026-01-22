@@ -1,6 +1,10 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/blog/:path*", "destination": "/blog/:path*" },
+    { "source": "/:path*", "destination": "https://sokovnin.tilda.ws/:path*" }
+  ],
   "headers": [
     {
       "source": "/_astro/(.*)",

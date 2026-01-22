@@ -1,0 +1,23 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  url: string;
+  author: string;
+}
+
+const { name, description, url, author } = Astro.props;
+---
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": name,
+  "description": description,
+  "url": url,
+  "author": {
+    "@type": "Person",
+    "name": author
+  },
+  "inLanguage": "ru-RU"
+})} />

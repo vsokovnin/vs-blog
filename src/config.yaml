@@ -1,40 +1,35 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
-  base: '/'
+  name: 'Виктор Соковнин'
+  site: 'https://sokovnin.me'
+  base: '/blog'
   trailingSlash: false
-
-  googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
 
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: Блог
+    template: '%s | Виктор Соковнин'
+  description: "Статьи о стратегии, продукте, росте и монетизации tech-компаний"
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: 'Виктор Соковнин'
     images:
       - url: '~/assets/images/default.png'
         width: 1200
         height: 628
     type: website
-  twitter:
-    handle: '@arthelokyo'
-    site: '@arthelokyo'
-    cardType: summary_large_image
+    locale: ru_RU
 
 i18n:
-  language: en
+  language: ru
   textDirection: ltr
 
 apps:
   blog:
     isEnabled: true
-    postsPerPage: 6
+    postsPerPage: 12
 
     post:
       isEnabled: true
@@ -44,7 +39,7 @@ apps:
 
     list:
       isEnabled: true
-      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
+      pathname: '' # Blog main path at /blog
       robots:
         index: true
 

@@ -5,7 +5,8 @@ import Layout from '~/layouts/PageLayout.astro';
 import BlogList from '~/components/blog/List.astro';
 import Headline from '~/components/blog/Headline.astro';
 import Pagination from '~/components/blog/Pagination.astro';
-// import PostTags from "~/components/blog/Tags.astro";
+import CategoryTabs from '~/components/blog/CategoryTabs.astro';
+import BlogJsonLd from '~/components/seo/BlogJsonLd.astro';
 
 import { blogListRobots, getStaticPathsBlogList } from '~/utils/blog';
 
@@ -24,7 +25,7 @@ const currentPage = page.currentPage ?? 1;
 // const allTags = await findTags();
 
 const metadata = {
-  title: `Blog${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
+  title: `Блог${currentPage > 1 ? ` — Страница ${currentPage}` : ''}`,
   robots: {
     index: blogListRobots?.index && currentPage === 1,
     follow: blogListRobots?.follow,
@@ -36,17 +37,18 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+  {currentPage === 1 && (
+    <BlogJsonLd
+      name="Блог"
+      description="Статьи о стратегии, продукте, росте и монетизации tech-компаний"
+      url="https://sokovnin.me/blog"
+      author="Виктор Соковнин"
+    />
+  )}
   <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
-    <Headline
-      subtitle="A statically generated blog example with news, tutorials, resources and other interesting content related to AstroWind"
-    >
-      The Blog
-    </Headline>
+    <Headline subtitle="Статьи о стратегии, продукте, росте и монетизации tech-компаний">Блог</Headline>
+    <CategoryTabs />
     <BlogList posts={page.data} />
     <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
-    <!--
-      <PostTags tags={allCategories} class="mb-2" title="Search by Categories:" isCategory />
-      <PostTags tags={allTags}  title="Search by Tags:" />
-    -->
   </section>
 </Layout>

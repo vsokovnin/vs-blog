@@ -10,6 +10,7 @@ import type { Post } from '~/types';
 import { getPermalink } from '~/utils/permalinks';
 import { findImage } from '~/utils/images';
 import { getFormattedDate } from '~/utils/utils';
+import { getCategoryName } from '~/utils/categories';
 
 export interface Props {
   post: Post;
@@ -83,7 +84,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
                 {' '}
                 ·{' '}
                 <a class="hover:underline" href={getPermalink(post.category.slug, 'category')}>
-                  {post.category.title}
+                  {getCategoryName(post.category.slug)}
                 </a>
               </>
             )

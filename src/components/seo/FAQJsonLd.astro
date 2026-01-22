@@ -1,0 +1,30 @@
+---
+interface Question {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  questions: Question[];
+}
+
+const { questions } = Astro.props;
+
+// Фильтровать пустые вопросы
+const validQuestions = questions.filter(q => q.question && q.answer);
+---
+
+{validQuestions.length > 0 && (
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": validQuestions.map(q => ({
+      "@type": "Question",
+      "name": q.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": q.answer
+      }
+    }))
+  })} />
+)}

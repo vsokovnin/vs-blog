@@ -1,6 +1,17 @@
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import type { HTMLAttributes, ImageMetadata } from 'astro/types';
 
+export interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+export interface Question {
+  question: string;
+  answer: string;
+}
+
 export interface Post {
   /** A unique ID number that identifies a post. */
   id: string;
@@ -42,6 +53,12 @@ export interface Post {
 
   /**  */
   readingTime?: number;
+
+  /**  */
+  headings?: Heading[];
+
+  /** FAQ structured data for JSON-LD */
+  faq?: Question[];
 }
 
 export interface Taxonomy {

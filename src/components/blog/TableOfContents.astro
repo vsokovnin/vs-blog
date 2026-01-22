@@ -1,0 +1,32 @@
+---
+import type { Heading } from '~/types';
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+
+// Фильтруем только h2 и h3 заголовки
+const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+---
+
+{tocHeadings.length > 0 && (
+  <nav class="toc mb-8 rounded-lg border border-gray-200 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800" aria-label="Table of Contents">
+    <h2 class="mb-4 text-lg font-bold text-gray-900 dark:text-gray-100">
+      Содержание
+    </h2>
+    <ul class="space-y-2 text-sm">
+      {tocHeadings.map((heading) => (
+        <li class={heading.depth === 3 ? 'ml-4' : ''}>
+          <a
+            href={`#${heading.slug}`}
+            class="text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors duration-200"
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}

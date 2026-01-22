@@ -61,6 +61,11 @@ const postCollection = defineCollection({
     tags: z.array(z.string()).optional(),
     author: z.string().optional(),
 
+    faq: z.array(z.object({
+      question: z.string(),
+      answer: z.string()
+    })).optional(),
+
     metadata: metadataDefinition(),
   }),
 });
