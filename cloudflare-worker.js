@@ -1,7 +1,7 @@
 // Cloudflare Worker для роутинга sokovnin.me
 // Автор: Claude Sonnet 4.5
 
-const VERCEL_URL = 'https://vs-blog-three.vercel.app';
+const VERCEL_URL = 'https://vs-blog-five.vercel.app';
 const TILDA_URL = 'https://sokovnin.tilda.ws';
 
 export default {
@@ -9,8 +9,8 @@ export default {
     const url = new URL(request.url);
     const { pathname, search } = url;
 
-    // Роутинг для /blog/*
-    if (pathname.startsWith('/blog')) {
+    // Роутинг для /blog/* и статичных ассетов Astro
+    if (pathname.startsWith('/blog') || pathname.startsWith('/_astro')) {
       // Убираем /blog из пути для Vercel (файлы лежат в корне)
       const vercelPath = pathname === '/blog' ? '/' : pathname.replace('/blog', '');
       const vercelUrl = new URL(vercelPath + search, VERCEL_URL);
