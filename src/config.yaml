@@ -1,7 +1,6 @@
 site:
   name: 'Виктор Соковнин'
   site: 'https://sokovnin.me'
-  base: '/blog'
   trailingSlash: false
 
 # Default SEO metadata
