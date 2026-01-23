@@ -16,6 +16,7 @@ const isAllActive = !activeCategory;
 <div class={`flex flex-wrap gap-3 mb-8 border-b border-gray-200 dark:border-gray-700 ${className || ''}`}>
   <a
     href={allPostsUrl}
+    data-astro-reload
     class:list={[
       'px-4 py-3 text-sm font-medium transition-all duration-200 border-b-2 -mb-px',
       {
@@ -35,6 +36,7 @@ const isAllActive = !activeCategory;
       return (
         <a
           href={categoryUrl}
+          data-astro-reload
           class:list={[
             'px-4 py-3 text-sm font-medium transition-all duration-200 border-b-2 -mb-px whitespace-nowrap',
             {
