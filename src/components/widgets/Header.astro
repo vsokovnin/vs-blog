@@ -1,9 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Logo from '~/components/Logo.astro';
-import ToggleTheme from '~/components/common/ToggleTheme.astro';
 import ToggleMenu from '~/components/common/ToggleMenu.astro';
-import Button from '~/components/ui/Button.astro';
+import ContactButton from '~/components/ui/ContactButton.astro';
 
 import { getHomePermalink, getBlogPermalink } from '~/utils/permalinks';
 import { trimSlash, getAsset } from '~/utils/permalinks';
@@ -27,7 +26,6 @@ export interface Props {
   isSticky?: boolean;
   isDark?: boolean;
   isFullWidth?: boolean;
-  showToggleTheme?: boolean;
   showRssFeed?: boolean;
   position?: string;
 }
@@ -39,7 +37,6 @@ const {
   isSticky = false,
   isDark = false,
   isFullWidth = false,
-  showToggleTheme = false,
   showRssFeed = false,
   position = 'center',
 } = Astro.props;
@@ -48,6 +45,51 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 const isActiveBlogPage = currentPath.startsWith('/blog');
 const blogPermalink = getBlogPermalink();
 ---
+
+<style>
+  /* Фирменный темно-синий фон для header */
+  header {
+    background-color: #001f3f !important;
+  }
+
+  /* Белый текст для всех ссылок и элементов */
+  header a,
+  header button,
+  header nav,
+  header span {
+    color: #FFFFFF !important;
+  }
+
+  /* Hover-эффекты для ссылок */
+  header a:hover,
+  header button:hover {
+    color: #E0F2FE !important; /* Светло-голубой при наведении */
+  }
+
+  /* RSS иконка: белый фон при hover, темно-синяя иконка */
+  header a[aria-label="RSS Feed"] {
+    background-color: transparent !important;
+  }
+
+  header a[aria-label="RSS Feed"]:hover {
+    background-color: #FFFFFF !important;
+  }
+
+  header a[aria-label="RSS Feed"]:hover svg {
+    color: #001f3f !important;
+  }
+
+  /* Убираем границу снизу header */
+  header {
+    border-bottom: none !important;
+  }
+
+  /* Sticky header с фирменным цветом при скролле */
+  header.scroll {
+    background-color: #001f3f !important;
+    box-shadow: 0 2px 8px rgba(0, 31, 63, 0.2) !important;
+  }
+</style>
 
 <header
   class:list={[
@@ -94,18 +136,18 @@ const blogPermalink = getBlogPermalink();
                 <>
                   <button
                     type="button"
-                    class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap"
+                    class="hover:text-link px-4 py-3 flex items-center whitespace-nowrap"
                   >
                     {text}{' '}
                     <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
                   </button>
-                  <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
+                  <ul class="dropdown-menu md:backdrop-blur-md rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
                     {links.map(({ text: text2, href: href2 }) => (
                       <li>
                         <a
                           class:list={[
-                            'first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap',
-                            { 'font-bold text-primary dark:text-primary': href2 === blogPermalink ? isActiveBlogPage : href2 === currentPath },
+                            'first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link py-2 px-5 block whitespace-no-wrap',
+                            { 'font-bold text-primary': href2 === blogPermalink ? isActiveBlogPage : href2 === currentPath },
                           ]}
                           href={href2}
                         >
@@ -118,8 +160,8 @@ const blogPermalink = getBlogPermalink();
               ) : (
                 <a
                   class:list={[
-                    'hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap transition-colors',
-                    { 'font-bold text-primary dark:text-primary': href === blogPermalink ? isActiveBlogPage : href === currentPath },
+                    'hover:text-link px-4 py-3 flex items-center whitespace-nowrap transition-colors',
+                    { 'font-bold text-primary': href === blogPermalink ? isActiveBlogPage : href === currentPath },
                   ]}
                   href={href}
                 >
@@ -139,11 +181,10 @@ const blogPermalink = getBlogPermalink();
     >
       <div class="items-center flex justify-between w-full md:w-auto">
         <div class="flex">
-          {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
           {
             showRssFeed && (
               <a
-                class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+                class="text-muted hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5 inline-flex items-center"
                 aria-label="RSS Feed"
                 href={getAsset('/rss.xml')}
               >
@@ -155,8 +196,12 @@ const blogPermalink = getBlogPermalink();
         {
           actions?.length ? (
             <span class="ml-4 rtl:ml-0 rtl:mr-4">
-              {actions.map((btnProps) => (
-                <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />
+              {actions.map((action) => (
+                <ContactButton
+                  href={action.href}
+                  text={action.text}
+                  target={action.target}
+                />
               ))}
             </span>
           ) : (

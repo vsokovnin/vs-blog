@@ -1,0 +1,70 @@
+---
+interface Props {
+  href: string;
+  text: string;
+  target?: string;
+}
+
+const { href, text, target = '_blank' } = Astro.props;
+---
+
+<style>
+  .contact-button {
+    /* Базовые стили */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Размеры и отступы */
+    padding: 0.625rem 1.5rem; /* py-2.5 px-6 */
+
+    /* Шрифт */
+    font-weight: 600;
+    font-size: 0.875rem; /* text-sm */
+    line-height: 1.25rem;
+
+    /* Цвета - белый фон, темно-синий текст */
+    background-color: #FFFFFF;
+    color: #001f3f;
+    border: 2px solid #FFFFFF;
+
+    /* Скругление */
+    border-radius: 9999px; /* rounded-full */
+
+    /* Тени и переходы */
+    transition: all 0.2s ease-in-out;
+    box-shadow: none;
+
+    /* Курсор */
+    cursor: pointer;
+
+    /* Убираем подчеркивание ссылки */
+    text-decoration: none;
+  }
+
+  .contact-button:hover {
+    /* При hover легкое увеличение */
+    background-color: #FFFFFF;
+    color: #001f3f;
+    border-color: #FFFFFF;
+    transform: scale(1.02);
+
+    /* Легкая тень для эффекта */
+    box-shadow: 0 2px 4px rgba(0, 31, 63, 0.1);
+  }
+
+  .contact-button:active {
+    /* При клике немного темнее */
+    background-color: #f0f0f0;
+    color: #001f3f;
+  }
+</style>
+
+<a
+  href={href}
+  class="contact-button"
+  target={target}
+  rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+>
+  {text}
+</a>
