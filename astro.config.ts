@@ -24,6 +24,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   output: 'static',
   site: 'https://sokovnin.me',
+  base: '/blog',
 
   integrations: [
     tailwind({
