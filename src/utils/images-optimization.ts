@@ -223,9 +223,20 @@ export const astroAssetsOptimizer: ImagesOptimizer = async (
     return [];
   }
 
+  // Check if image is a remote URL - don't use inferSize for remote images
+  // as it requires network access which may not be available during build
+  const isRemote = typeof image === 'string' && (image.startsWith('http://') || image.startsWith('https://'));
+
   return Promise.all(
     breakpoints.map(async (w: number) => {
-      const result = await getImage({ src: image, width: w, inferSize: true, ...(format ? { format: format } : {}) });
+      const height = _width && _height ? Math.round(w * (_height / _width)) : undefined;
+      const result = await getImage({
+        src: image,
+        width: w,
+        ...(isRemote && height ? { height } : {}),
+        ...(!isRemote ? { inferSize: true } : {}),
+        ...(format ? { format: format } : {})
+      });
 
       return {
         src: result?.src,
