@@ -36,6 +36,14 @@ import { UI } from 'astrowind:config';
   // Apply theme on initial load
   initTheme();
 
-  // Re-apply theme after View Transitions page swap (fixes FOUC)
+  // Preserve dark class BEFORE View Transitions swap (prevents FOUC)
+  document.addEventListener('astro:before-swap', (event) => {
+    const isDark = document.documentElement.classList.contains('dark');
+    if (isDark) {
+      event.newDocument.documentElement.classList.add('dark');
+    }
+  });
+
+  // Re-apply theme after View Transitions page swap (fallback)
   document.addEventListener('astro:after-swap', initTheme);
 </script>
