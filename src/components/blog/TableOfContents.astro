@@ -7,8 +7,8 @@ interface Props {
 
 const { headings } = Astro.props;
 
-// Фильтруем только h2 и h3 заголовки
-const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+// Фильтруем только h2 заголовки
+const tocHeadings = headings.filter(h => h.depth === 2);
 ---
 
 {tocHeadings.length > 0 && (
@@ -18,7 +18,7 @@ const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
     </h2>
     <ul class="space-y-2 text-sm">
       {tocHeadings.map((heading) => (
-        <li class={heading.depth === 3 ? 'ml-4' : ''}>
+        <li>
           <a
             href={`#${heading.slug}`}
             class="text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors duration-200"
