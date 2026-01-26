@@ -82,3 +82,21 @@
 .dd *:first-child {
   margin-top: 0;
 }
+
+/* Blog post headings - reduced by 15% */
+.prose h2 {
+  font-size: 1.275em;
+}
+
+.prose h3 {
+  font-size: 1.0625em;
+}
+
+.prose h4 {
+  font-size: 0.85em;
+}
+
+/* Blog post body text - reduced by 10% */
+.prose {
+  font-size: 0.9rem;
+}
