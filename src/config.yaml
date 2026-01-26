@@ -10,7 +10,7 @@ metadata:
     template: '%s | Виктор Соковнин'
   description: "Статьи про стратегию, рост и монетизацию tech-компаний"
   robots:
-    index: true
+    index: false
     follow: true
   openGraph:
     site_name: 'Виктор Соковнин'
@@ -34,19 +34,19 @@ apps:
       isEnabled: true
       permalink: '/blog/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
       robots:
-        index: true
+        index: false
 
     list:
       isEnabled: true
       pathname: 'blog' # Blog main path at /blog
       robots:
-        index: true
+        index: false
 
     category:
       isEnabled: true
       pathname: 'blog/category' # Category main path /blog/category/some-category
       robots:
-        index: true
+        index: false
 
     tag:
       isEnabled: true
