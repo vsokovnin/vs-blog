@@ -67,6 +67,20 @@ export const adaptOpenGraphImages = async (
   const adaptedImages = await Promise.all(
     images.map(async (image) => {
       if (image?.url) {
+        // If width and height are already provided and URL is external, skip optimization
+        if (
+          typeof image.url === 'string' &&
+          (image.url.startsWith('http://') || image.url.startsWith('https://')) &&
+          image.width &&
+          image.height
+        ) {
+          return {
+            url: image.url,
+            width: image.width,
+            height: image.height,
+          };
+        }
+
         const resolvedImage = (await findImage(image.url)) as ImageMetadata | string | undefined;
         if (!resolvedImage) {
           return {
