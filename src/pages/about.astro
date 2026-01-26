@@ -6,6 +6,9 @@ import Stats from '~/components/widgets/Stats.astro';
 import Steps2 from '~/components/widgets/Steps2.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
+import aboutHeroImage from '~/assets/images/pages/about-hero.jpg';
+import aboutFeaturesImage from '~/assets/images/pages/about-features.jpg';
+
 const metadata = {
   title: 'About us',
 };
@@ -17,7 +20,7 @@ const metadata = {
   <Hero
     tagline="About us"
     image={{
-      src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      src: aboutHeroImage,
       alt: 'Caos Image',
     }}
   >
@@ -118,7 +121,7 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
+      src: aboutFeaturesImage,
       alt: 'Colorful Image',
     }}
   />
