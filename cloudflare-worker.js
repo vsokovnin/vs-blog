@@ -1,7 +1,7 @@
 // Cloudflare Worker для роутинга sokovnin.me
 // Автор: Claude Sonnet 4.5
 
-const VERCEL_URL = 'https://vs-blog-five.vercel.app';
+const AMVERA_URL = 'https://vs-blog-vsokovnin.amvera.io';
 const TILDA_URL = 'https://sokovnin.tilda.ws';
 
 export default {
@@ -11,18 +11,17 @@ export default {
 
     // Роутинг для /blog/* и статичных ассетов Astro
     if (pathname.startsWith('/blog') || pathname.startsWith('/_astro')) {
-      // Убираем /blog из пути для Vercel (файлы лежат в корне)
-      const vercelPath = pathname === '/blog' ? '/' : pathname.replace('/blog', '');
-      const vercelUrl = new URL(vercelPath + search, VERCEL_URL);
+      // Amvera: путь передаём как есть (блог лежит в /blog/)
+      const amveraUrl = new URL(pathname + search, AMVERA_URL);
 
-      const vercelRequest = new Request(vercelUrl, {
+      const amveraRequest = new Request(amveraUrl, {
         method: request.method,
         headers: request.headers,
         body: request.body,
         redirect: 'manual'
       });
 
-      const response = await fetch(vercelRequest);
+      const response = await fetch(amveraRequest);
 
       // Копируем ответ с правильными заголовками
       const newResponse = new Response(response.body, response);
