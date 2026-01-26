@@ -145,8 +145,8 @@
 | 09 | Проектирование | [09-design.md](../../content/projects/sokovnin-me/Marketing/Blog/Series/DTS/09-design.md) | [dts-design.mdx](./src/data/post/dts-design.mdx) | ✅ | [sokovnin.me/blog/dts-design](https://sokovnin.me/blog/dts-design) |
 | 10 | Валидация | [10-validation.md](../../content/projects/sokovnin-me/Marketing/Blog/Series/DTS/10-validation.md) | [dts-validation.mdx](./src/data/post/dts-validation.mdx) | ✅ | [sokovnin.me/blog/dts-validation](https://sokovnin.me/blog/dts-validation) |
 | 11 | Конкурентное позиционирование | [11-competition.md](../../content/projects/sokovnin-me/Marketing/Blog/Series/DTS/11-competition.md) | [dts-competition.mdx](./src/data/post/dts-competition.mdx) | ✅ | [sokovnin.me/blog/dts-competition](https://sokovnin.me/blog/dts-competition) |
-| 12 | Коммуникация стратегии | [12-communication.md](../../content/projects/sokovnin-me/Marketing/Blog/Series/DTS/12-communication.md) | [dts-communication.mdx](./src/data/post/dts-communication.mdx) | 🔧 | — |
-| 13 | Инструменты DTS | [13-tools.md](../../content/projects/sokovnin-me/Marketing/Blog/Series/DTS/13-tools.md) | [dts-tools.mdx](./src/data/post/dts-tools.mdx) | 🔧 | — |
+| 12 | Коммуникация стратегии | [12-communication.md](../../content/projects/sokovnin-me/Marketing/Blog/Series/DTS/12-communication.md) | [dts-communication.mdx](./src/data/post/dts-communication.mdx) | ✅ | [sokovnin.me/blog/dts-communication](https://sokovnin.me/blog/dts-communication) |
+| 13 | Инструменты DTS | [13-tools.md](../../content/projects/sokovnin-me/Marketing/Blog/Series/DTS/13-tools.md) | [dts-tools.mdx](./src/data/post/dts-tools.mdx) | ✅ | [sokovnin.me/blog/dts-tools](https://sokovnin.me/blog/dts-tools) |
 
 ### Единичные статьи
 
