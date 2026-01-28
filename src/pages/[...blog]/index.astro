@@ -28,8 +28,8 @@ const { post } = Astro.props as Props;
 const url = getCanonical(getPermalink(post.permalink, 'post'));
 const image = (await findImage(post.image)) as ImageMetadata | string | undefined;
 
-// Generated OG image URL (include /blog prefix for Cloudflare routing)
-const ogImageUrl = new URL(`/blog/og/${post.slug}.png`, Astro.site).href;
+// Generated OG image URL (direct Amvera URL, bypassing Cloudflare)
+const ogImageUrl = `https://vs-blog-vsokovnin.amvera.io/og/${post.slug}.png`;
 
 const metadata = merge(
   {
